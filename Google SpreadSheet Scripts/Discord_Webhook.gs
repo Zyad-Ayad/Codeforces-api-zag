@@ -1,5 +1,8 @@
+const userProperties = PropertiesService.getUserProperties();
+const webhookUrl = userProperties.getProperty('webhookUrl');
+
 function sendDiscordMessage(message) {
-    let url = "https://discord.com/api/webhooks/1146878404625453088/8Gia8_FSj0FNyk91VxeaCrMug5LuAgE-oNjkP8BSnwOGCiExkTBduTcoZhix_vp3WrrA";
+    let url = webhookUrl;
     let payload = JSON.stringify({content: message});
     let params = {
         method: "POST",
