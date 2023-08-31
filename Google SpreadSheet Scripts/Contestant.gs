@@ -22,15 +22,8 @@ class Contestant {
   GetAcceptedArray(Contests, standingNumber) {
     this.AddNoAcceptedSheets(standingNumber);
     let problems = this.sheets.map((problemsSet, index) => {
-      let emoji = '';
       let totalProblems = Contests[index];
-      if (!problemsSet.size) {
-        emoji = ' :(';
-      }
-      else if (totalProblems == problemsSet.size) {
-        emoji = ' :)';
-      }
-      return `${problemsSet.size} / ${totalProblems}` + emoji;
+      return `${problemsSet.size}`;
     });
     return problems;
   }

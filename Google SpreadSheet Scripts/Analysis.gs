@@ -1,3 +1,6 @@
+
+const options = { year: 'numeric', month: 'short', day: 'numeric' }
+
 function GetDate(addDays = 0) {
   let date = new Date();
   date.setDate(date.getDate() + addDays);

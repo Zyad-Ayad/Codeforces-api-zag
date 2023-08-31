@@ -8,18 +8,21 @@ function cmp(a, b) {
 }
 
 function Get_Accepted() {
+  let sheetsTotalProblems =['-','-']
   let [handlesList, standings] = Get_Seeds();
   let standingNumber = -1;
   for (standing of standings) {
     standingNumber++;
     let lastContestants = {};
     for (let page = 1; ; page++) {
-      let link = `https://codeforces-api.netlify.app/.netlify/functions/ac/g/${standing[0]}/c/${standing[1]}/p/${page}/l/${handlesList}`;
+      let link = `https://icpczag.netlify.app/.netlify/functions/ac/g/${standing[0]}/c/${standing[1]}/p/${page}/l/${handlesList}`;
       let res = JSON.parse(UrlFetchApp.fetch(link).getContentText())['result'];
       if (page == 1) {
         let standingLink = res.contest.link;
         let standingName = res.contest.name;
         let standingProblems = res.contest.problems.length;
+        sheetsTotalProblems.push(standingProblems);
+        
         Contests.push(standingProblems);
         StandingData[0].push(`=HYPERLINK("${standingLink}", "${standingName}")`);
         Logger.log(standingName);
@@ -60,6 +63,7 @@ function Get_Accepted() {
 
   Clear(StandingSheet, StandingData);
   StandingSheet.getRange(1, 1, StandingData.length, StandingData[0].length).setValues(StandingData);
+  StandingSheet.appendRow(sheetsTotalProblems);
 
   Add_Rate();
 }

@@ -12,9 +12,9 @@ function Add_Rate(){
     let range = sheet.getRange('A:A');
     let handles = range.getValues();
     let colors = [['#ffffff']], i = 1;
-    while(i < handles.length){
+    while(i < handles.length-1){
       let link = 'https://codeforces.com/api/user.info?handles=';
-      for(;i< handles.length; i++){
+      for(;i< handles.length-1; i++){
           link += handles[i] + ';';
           if(i % 150 == 0){
              i++;
